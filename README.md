@@ -1,13 +1,17 @@
 ### 执行爬虫
-- 直接执行 Python 脚本
+- Python 脚本执行
   `scrapy runspider szggzy_interface.py -a startDate='2023-06-16' -a endDate='2023-06-16' >> ./scrapy.log`
-- 执行 shell 脚本(批量)，提示输入
-  `./scrapy_loop.sh`
+- shell 脚本执行，提示输入
   ```shell
+  ./scrapy_loop.sh
   请输入日期（例如：2023-08-10）：
   2023-02-14
   请输入向前爬取的天数（例如：5）：
   2
+  ```
+- shell 脚本根据参数自动执行
+  ```shell
+  ./scrapy_loop.sh auto 2023-06-10 5
   ```
 
 ### 采购公告
