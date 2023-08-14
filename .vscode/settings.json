@@ -1,0 +1,13 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "files.associations": {
+    "*.wxs": "javascript"
+  },
+  "eslint.validate": [
+    "javascript",
+    "vue",
+    "html"
+  ],
+}
