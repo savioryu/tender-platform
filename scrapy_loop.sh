@@ -48,7 +48,7 @@ fi
 for ((i=0; i<$num_loops_input; i++)); do
     echo "当前日期：$current_date"
     # 执行 Python 脚本并传入日期参数
-    # scrapy runspider ./scrapy/szggzy_interface.py -a startDate="$current_date" -a endDate="$current_date" >> ./scrapy/logs/scrapy.log
+    scrapy runspider ./scrapy/szggzy_interface.py -a startDate="$current_date" -a endDate="$current_date" >> ./scrapy/logs/scrapy.log
     # 倒计时时长
     countdown_seconds=300
     # 清空行
