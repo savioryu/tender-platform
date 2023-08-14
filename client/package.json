@@ -5,13 +5,17 @@
   "author": "Pan <panfree23@gmail.com>",
   "scripts": {
     "dev": "vue-cli-service serve",
+    "build:dev": "vue-cli-service build --mode development",
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "lint": "eslint --fix --ext .js,.vue src",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
-    "test:ci": "npm run lint && npm run test:unit"
+    "test:ci": "npm run lint && npm run test:unit",
+    "deploy:dev": "yarn build:dev && rm -rf ../nest-web-server/public/dist && cp -r dist ../nest-web-server/public/",
+    "deploy:prod": "yarn build:prod && rm -rf ../nest-web-server/public/dist && cp -r dist ../nest-web-server/public/"
+
   },
   "dependencies": {
     "axios": "0.18.1",

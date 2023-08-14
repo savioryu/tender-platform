@@ -23,12 +23,29 @@
 https://www.szggzy.com/jygg/list.html
 
 
-### 本地开发
-- 启动 client 平台
+### client
+- 本地开发
+```
 yarn dev
+```
 http://localhost:8080/#/purchase/list
 http://localhost:8080/#/purchase/detail?contentId=1863594
 
-- 启动 web server
-yarn start:dev 
-http://localhost:3000/announcement/list
+- 部署
+```
+yarn deploy:prod
+```
+
+### web server
+- 本地开发
+```
+yarn start:dev
+```
+http://localhost:8000/announcement/list
+
+- 部署
+```
+yarn start
+# 后台运行
+nohup yarn start > /dev/null 2>&1 &
+```
