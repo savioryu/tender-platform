@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input v-model="listQuery.purchaser_name" placeholder="采购人" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         Search
       </el-button>
     </div>
@@ -86,6 +86,7 @@ export default {
       newTab.focus();
     },
     handleFilter() {
+      this.listQuery.page = 1;
       this.getList();
     }
   }
