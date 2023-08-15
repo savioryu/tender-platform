@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import * as compression from 'compression';
 
 import { join } from 'path';
 
@@ -15,6 +16,7 @@ async function bootstrap() {
   };
 
   app.enableCors(corsOptions);
+  app.use(compression());
   app.useStaticAssets(join(__dirname, '..', 'public/dist'));
 
   await app.listen(8000);
