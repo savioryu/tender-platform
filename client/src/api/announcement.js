@@ -14,3 +14,11 @@ export function getDetail(contentId) {
     method: 'get'
   });
 }
+
+export function updateField(data){
+  return request({
+    url: `/announcement/updateField`,
+    method: 'post',
+    data
+  });
+}

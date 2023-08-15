@@ -21,4 +21,34 @@ export class AnnouncementController {
     );
     return { code: 0, msg: 'ok', data };
   }
+  @Post('updateField')
+  async updateOrCreateField(
+    @Body()
+    body: {
+      contentId: string;
+      fieldName: string;
+      newFieldValue: string | boolean;
+    },
+  ): Promise<any> {
+    try {
+      const { contentId, fieldName, newFieldValue } = body;
+      const updatedDocument =
+        await this.announcementService.updateOrCreateField(
+          contentId,
+          fieldName,
+          newFieldValue,
+        );
+
+      if (updatedDocument) {
+        return {
+          code: 0,
+          message: 'Field updated or created successfully',
+        };
+      } else {
+        return { code: 50001, message: 'Failed to update or create field' };
+      }
+    } catch (error) {
+      return { error: 'An error occurred', message: error.message };
+    }
+  }
 }

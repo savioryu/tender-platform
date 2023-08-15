@@ -34,6 +34,11 @@
           <span>{{ scope.row.bid_opening_time }}</span>
         </template>
       </el-table-column>
+      <el-table-column label="操作" align="center" width="auto" class-name="small-padding">
+        <template slot-scope="scope">
+          <el-button type="warning" size="large" :icon="scope.row.need_refresh ? 'el-icon-star-on' : 'el-icon-star-off'" circle @click="handleMarkRefresh(scope.row)" />
+        </template>
+      </el-table-column>
     </el-table>
     <pagination v-show="total > 0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
 
@@ -41,7 +46,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/announcement';
+import { getList, updateField } from '@/api/announcement';
 import Pagination from '@/components/Pagination';
 export default {
   components: { Pagination },
@@ -88,6 +93,22 @@ export default {
     handleFilter() {
       this.listQuery.page = 1;
       this.getList();
+    },
+    handleMarkRefresh(item) {
+      const { contentId, need_refresh } = item;
+      const need_refresh_new = !need_refresh;
+      updateField({ contentId, fieldName: 'need_refresh', newFieldValue: need_refresh_new }).then(res => {
+        if (res.code === 0) {
+          this.updateList({ contentId, need_refresh: need_refresh_new });
+        }
+      });
+    },
+    updateList(updateItem) {
+      // 根据实际情况，更新列表中的数据
+      const index = this.list.findIndex(item => item.contentId === updateItem.contentId);
+      if (index !== -1) {
+        this.list[index].need_refresh = updateItem.need_refresh;
+      }
     }
   }
 };

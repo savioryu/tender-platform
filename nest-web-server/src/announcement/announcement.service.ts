@@ -36,4 +36,27 @@ export class AnnouncementService {
     const total = await this.announcementModel.countDocuments(filters).exec();
     return { items, total };
   }
+  async updateOrCreateField(
+    contentId: string,
+    fieldName: string,
+    newFieldValue: string | boolean,
+  ): Promise<AnnouncementDocument | null> {
+    try {
+      const filter = { contentId };
+      const update = {
+        $set: { [fieldName]: newFieldValue },
+      };
+      const options = { new: true }; // new: 布尔值，true 返回更新后的数据，false （默认）返回更新前的数据
+      const updatedDocument = await this.announcementModel.findOneAndUpdate(
+        filter,
+        update,
+        options,
+      );
+
+      return updatedDocument;
+    } catch (error) {
+      console.error('An error occurred during update or create:', error);
+      throw error;
+    }
+  }
 }
