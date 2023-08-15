@@ -23,9 +23,13 @@ export class AnnouncementService {
     const filters = {
       purchaser_name: { $regex: new RegExp(purchaser_name, 'i') },
     };
+    // 字段投影，将要返回的字段设为 1，要排除的字段设为 0
+    const projection = {
+      txt: 0,
+    };
     const skip = (page - 1) * limit;
     const items = await this.announcementModel
-      .find(filters)
+      .find(filters, projection)
       .skip(skip)
       .limit(limit)
       .exec();
