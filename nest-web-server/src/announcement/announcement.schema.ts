@@ -20,3 +20,5 @@ export class Announcement extends Document {
   need_refresh: boolean;
 }
 export const AnnouncementSchema = SchemaFactory.createForClass(Announcement);
+
+AnnouncementSchema.index({ releaseTime: -1 });

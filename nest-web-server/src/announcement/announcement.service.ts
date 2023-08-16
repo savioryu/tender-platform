@@ -34,6 +34,7 @@ export class AnnouncementService {
     const skip = (page - 1) * limit;
     const items = await this.announcementModel
       .find(filters, projection)
+      .sort({ releaseTime: -1 }) // 降序排序
       .skip(skip)
       .limit(limit)
       .exec();
