@@ -1,10 +1,22 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.purchaser_name" placeholder="采购人" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-        Search
-      </el-button>
+      <el-form :inline="true" class="demo-form-inline">
+        <el-form-item label="项目名称">
+          <el-input v-model="listQuery.title" placeholder="项目名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        </el-form-item>
+        <el-form-item label="采购人">
+          <el-input v-model="listQuery.purchaser_name" placeholder="采购人" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        </el-form-item>
+        <el-form-item label="代理机构">
+          <el-input v-model="listQuery.agency_name" placeholder="代理机构" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+        </el-form-item>
+        <el-form-item>
+          <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+            Search
+          </el-button>
+        </el-form-item>
+      </el-form>
     </div>
     <el-table v-loading="listLoading" :data="list" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column label="项目名称">
@@ -68,7 +80,9 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        purchaser_name: ''
+        title: '',
+        purchaser_name: '',
+        agency_name: ''
       }
     };
   },

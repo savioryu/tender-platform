@@ -17,11 +17,15 @@ export class AnnouncementService {
   async getAnnouncements(
     page: number,
     limit: number,
+    title: string,
     purchaser_name: string,
+    agency_name: string,
   ): Promise<any> {
     // 筛选条件
     const filters = {
+      title: { $regex: new RegExp(title, 'i') },
       purchaser_name: { $regex: new RegExp(purchaser_name, 'i') },
+      agency_name: { $regex: new RegExp(agency_name, 'i') },
     };
     // 字段投影，将要返回的字段设为 1，要排除的字段设为 0
     const projection = {

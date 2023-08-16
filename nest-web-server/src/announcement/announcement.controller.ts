@@ -11,13 +11,22 @@ export class AnnouncementController {
   }
   @Post('getList')
   async getAnnouncementsPost(
-    @Body() req: { page: number; limit: number; purchaser_name: string },
+    @Body()
+    req: {
+      page: number;
+      limit: number;
+      title: string;
+      purchaser_name: string;
+      agency_name: string;
+    },
   ): Promise<any> {
-    const { page, limit, purchaser_name } = req;
+    const { page, limit, title, purchaser_name, agency_name } = req;
     const data = await this.announcementService.getAnnouncements(
       page,
       limit,
+      title,
       purchaser_name,
+      agency_name,
     );
     return { code: 0, msg: 'ok', data };
   }
