@@ -55,7 +55,13 @@ http://localhost:8000/announcement/list
 - 进入 nest-web-server 目录
 - 执行部署命令
 ```
-yarn deploy:prod
+kill -9 $(lsof -t -i:8000) | yarn deploy:prod 
 ```
 - 浏览器访问
 http://81.71.102.150:8000/index.html#/purchase/list
+
+### 自动爬取任务
+```
+# 每日凌晨爬取昨日数据
+0 1 * * * /home/lighthouse/tender-platform/scrapy_loop.sh auto >> /home/lighthouse/tender-platform/scrapy_loop.log 2>&1
+```
