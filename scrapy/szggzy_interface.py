@@ -62,6 +62,7 @@ class SzggzySpider(scrapy.Spider):
                     'page': 0,
                     'size': 100
                 }
+                # 源列表接口对于 2022-08-04 后的数据才能使用 jygg_gglxmc 过滤
                 if (currentDate > datetime(2022, 8, 4)):
                     data['fields'].append({'fieldName': 'jygg_gglxmc', 'fieldValue': '采购公告'})
 
