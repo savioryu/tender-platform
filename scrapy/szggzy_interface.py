@@ -55,7 +55,6 @@ class SzggzySpider(scrapy.Spider):
                     'channelId':2850,
                     'fields':[
                         {'fieldName':'jygg_gglxmc_rank1','fieldValue':'采购公告'}, 
-                        {'fieldName': "jygg_gglxmc", 'fieldValue': "采购公告"}
                     ],
                     'title': None,
                     'releaseTimeBegin': release_time_begin,
@@ -63,6 +62,9 @@ class SzggzySpider(scrapy.Spider):
                     'page': 0,
                     'size': 100
                 }
+                if (currentDate > datetime(2022, 8, 4)):
+                    data['fields'].append({'fieldName': 'jygg_gglxmc', 'fieldValue': '采购公告'})
+
                 headers = {
                     'Content-Type': 'application/json',
                     'Referer': 'https://www.szggzy.com/jygg/list.html'
