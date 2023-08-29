@@ -4,6 +4,7 @@ unpackage/
 dist/
 __pycache__/
 scrapy/logs/scrapy.log
+scrapy_loop.log
 
 # local env files
 .env.local

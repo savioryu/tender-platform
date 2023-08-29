@@ -54,7 +54,9 @@ for ((i=0; i<$num_loops_input; i++)); do
     # 清空行
     clear_line="\033[2K"
     while [ $countdown_seconds -gt 0 ]; do
-        echo -ne "$clear_line\r等待倒计时: $countdown_seconds 秒"
+        if [ "$1" != "auto" ]; then
+            echo -ne "$clear_line\r等待倒计时: $countdown_seconds 秒"
+        fi
         sleep 1
         ((countdown_seconds--))
     done
