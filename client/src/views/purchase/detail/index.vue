@@ -40,7 +40,8 @@ export default {
         this.title = title;
         this.txt = txt;
         const { attrValue } = attachments;
-        this.attachList = JSON.parse(attrValue);
+        const attachList = JSON.parse(attrValue);
+        this.attachList = Object.prototype.toString.call(attachList) === '[object Array]' ? attachList : [attachList];
       });
     }
   }
