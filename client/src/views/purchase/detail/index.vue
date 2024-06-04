@@ -12,7 +12,7 @@
             {{ `${attach.fileName}（${attach.fileSize}）` }}
           </el-link>
         </div>
-        {{ attachString }}
+        <div ref="editorContent" class="editor-content" v-html="attachString" />
       </el-form-item>
     </el-form>
   </div>
