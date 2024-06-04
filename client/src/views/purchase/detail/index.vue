@@ -12,6 +12,7 @@
             {{ `${attach.fileName}（${attach.fileSize}）` }}
           </el-link>
         </div>
+        {{ attachString }}
       </el-form-item>
     </el-form>
   </div>
@@ -25,6 +26,7 @@ export default {
   data() {
     return {
       attachList: [],
+      attachString: '',
       txt: ''
     };
   },
@@ -40,8 +42,12 @@ export default {
         this.title = title;
         this.txt = txt;
         const { attrValue } = attachments;
-        const attachList = JSON.parse(attrValue);
-        this.attachList = Object.prototype.toString.call(attachList) === '[object Array]' ? attachList : [attachList];
+        try {
+          const attachList = JSON.parse(attrValue);
+          this.attachList = Object.prototype.toString.call(attachList) === '[object Array]' ? attachList : [attachList];
+        } catch (error) {
+          this.attachString = attrValue;
+        }
       });
     }
   }
